@@ -46,14 +46,14 @@ test("it should display the album name", () => {
 test("it should display the album's genre", () => {
   const data = testData[0];
   render(<AlbumCard album={data} />);
-  const genre = screen.queryByText(data.genre);
+  const genre = screen.queryByText(`Genre - ${data.genre}`);
   expect(genre).toBeVisible();
 });
 
 test("it should display the number of tracks in the album", () => {
   const data = testData[0];
   render(<AlbumCard album={data} />);
-  const trackCount = screen.queryByText(data.trackCount);
+  const trackCount = screen.queryByText(`${data.trackCount} Tracks`);
   expect(trackCount).toBeVisible();
 });
 
