@@ -1,11 +1,10 @@
-import { click } from "@testing-library/user-event/dist/click";
 import axios from "axios";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 
 var Buffer = require("buffer/").Buffer;
 
-const PlaylistEntry = () => {
+const PlaylistEntry = ({ loadAlbums }) => {
   const [playlistId, setPlaylistId] = useState("");
 
   const baseUrl = "https://api.spotify.com/v1/playlists/";
@@ -40,21 +39,15 @@ const PlaylistEntry = () => {
     return tracks;
   }
   function filterAlbums(tracks) {
-    const tr = tracks[0];
-    console.log(tr.track.album["album_type"]);
-    return (
-      tracks
-        .filter((track) => !(track.track.album["album_type"] === "single"))
-        // .filter((track) => true)
-        .map((track) => track.track.album)
-    );
+    return tracks
+      .filter((track) => !(track.track.album["album_type"] === "single"))
+      .map((track) => track.track.album);
   }
   async function clickFunction() {
     const token = await getAuthToken().then((d) => d.data.access_token);
     const tracks = await getTracks(playlistId, token);
     const filteredAlbums = filterAlbums(tracks);
-    console.log(filteredAlbums);
-    return tracks;
+    loadAlbums(filteredAlbums);
   }
   return (
     <div>
