@@ -6,9 +6,7 @@ import ResultsScreen from "./components/ResultsScreen";
 function App() {
   const [albums, setAlbums] = useState(null);
   const loadAlbums = (data) => {
-    console.log(data);
     setAlbums(() => data);
-    console.log(albums);
   };
 
   return (
