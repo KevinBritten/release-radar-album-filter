@@ -1,6 +1,6 @@
 import AlbumCard from "./AlbumCard";
 
-import "../styles/result-screen.css";
+import "../styles/results-screen.css";
 
 const ResultsScreen = ({ albums }) => {
   function joinArtists(artists) {
