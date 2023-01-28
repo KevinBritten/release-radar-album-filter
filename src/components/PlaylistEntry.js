@@ -2,6 +2,8 @@ import axios from "axios";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 
+import "../styles/playlist-entry.css";
+
 var Buffer = require("buffer/").Buffer;
 
 const PlaylistEntry = ({ loadAlbums }) => {
@@ -50,7 +52,7 @@ const PlaylistEntry = ({ loadAlbums }) => {
     loadAlbums(filteredAlbums);
   }
   return (
-    <div>
+    <div className="playlist-entry">
       <p>
         Go to your Release Radar playlist in Spotify and click “Share” &gt;
         “Copy link to playlist”. Paste the link into the box below.

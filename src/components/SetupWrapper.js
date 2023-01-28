@@ -1,8 +1,10 @@
 import PlaylistEntry from "./PlaylistEntry";
 
+import "../styles/setup-wrapper.css";
+
 const SetupWrapper = ({ loadAlbums }) => {
   return (
-    <div>
+    <div className="setup-wrapper">
       <h1>Get only the full album releases from your Release Radar.</h1>
       <PlaylistEntry loadAlbums={loadAlbums} />
     </div>
