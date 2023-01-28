@@ -1,5 +1,7 @@
 import AlbumCard from "./AlbumCard";
 
+import "../styles/result-screen.css";
+
 const ResultsScreen = ({ albums }) => {
   function joinArtists(artists) {
     return artists.reduce((previous, current) => {
@@ -9,7 +11,7 @@ const ResultsScreen = ({ albums }) => {
   }
 
   return (
-    <div>
+    <div className="results-screen">
       <h1>Here are the albums we found for you:</h1>
       {albums.map((a) => {
         const {
