@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import PlaylistEntry from "./components/PlaylistEntry";
+import SetupWrapper from "./components/SetupWrapper";
 import ResultsScreen from "./components/ResultsScreen";
 
 function App() {
@@ -13,8 +13,7 @@ function App() {
 
   return (
     <div>
-      <h1>Start</h1>
-      {!albums && <PlaylistEntry loadAlbums={loadAlbums} />}
+      {!albums && <SetupWrapper loadAlbums={loadAlbums} />}
       {albums && <ResultsScreen albums={albums}></ResultsScreen>}
     </div>
   );
