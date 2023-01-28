@@ -51,6 +51,12 @@ const PlaylistEntry = ({ loadAlbums }) => {
     const filteredAlbums = filterAlbums(tracks);
     loadAlbums(filteredAlbums);
   }
+  function extractId(url) {
+    let startIdx = url.indexOf("/playlist/") + 10;
+    let endIdx = url.indexOf("?si=");
+    return url.substring(startIdx, endIdx);
+  }
+
   return (
     <div className="playlist-entry">
       <p>
@@ -63,7 +69,7 @@ const PlaylistEntry = ({ loadAlbums }) => {
           type="text"
           required
           onChange={(e) => {
-            setPlaylistId(e.target.value);
+            setPlaylistId(extractId(e.target.value));
           }}
           placeholder="Paste playlist link here"
         ></input>
