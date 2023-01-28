@@ -59,6 +59,7 @@ const PlaylistEntry = ({ loadAlbums }) => {
       </p>
       <form>
         <input
+          className="form-control"
           type="text"
           required
           onChange={(e) => {

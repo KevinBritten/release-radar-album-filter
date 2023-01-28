@@ -2,3 +2,12 @@
   padding: 100px 60px;
   text-align: center;
 }
+
+.playlist-entry > form {
+  max-width: 500px;
+  margin: auto;
+}
+
+.playlist-entry > form > input {
+  margin-bottom: 10px;
+}
