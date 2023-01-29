@@ -8,10 +8,6 @@
   margin-top: 100px;
 }
 
-.results-screen > h1 {
-  text-align: center;
-}
-
 .results-screen__cards-wrapper {
   margin: 50px 0;
   display: grid;

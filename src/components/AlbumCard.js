@@ -4,6 +4,7 @@ const AlbumCard = ({ album }) => {
   return (
     <Card style={{ width: "18rem" }}>
       <img
+        className="card-img-top"
         src={album.images[0].url}
         srcSet={`${album.images[0].url} 640w,
          ${album.images[1].url} 300w,
