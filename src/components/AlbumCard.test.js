@@ -27,6 +27,30 @@ const testData = [
     trackCount: 11,
     genre: "Rock, Jazz",
   },
+  {
+    name: "album name",
+    artist: "artist 1, artist 2",
+    images: [
+      {
+        height: 640,
+        url: "https://i.scdn.co/image/ab67616d0000b27326597c053b38c9cf93f8f3a9",
+        width: 640,
+      },
+      {
+        height: 300,
+        url: "https://i.scdn.co/image/ab67616d00001e0226597c053b38c9cf93f8f3a9",
+        width: 300,
+      },
+      {
+        height: 64,
+        url: "https://i.scdn.co/image/ab67616d0000485126597c053b38c9cf93f8f3a9",
+        width: 64,
+      },
+    ],
+    externalUrl: "https://open.spotify.com/track/4OEnpg5ubhg6OQ4M2ZjtsL",
+    trackCount: 11,
+    genre: "",
+  },
 ];
 
 test("it should display the artist's names", () => {
@@ -48,6 +72,13 @@ test("it should display the album's genre", () => {
   render(<AlbumCard album={data} />);
   const genre = screen.queryByText(`Genre - ${data.genre}`);
   expect(genre).toBeVisible();
+});
+
+test("it should not display the album's genre if no genre is provided", () => {
+  const data = testData[1];
+  render(<AlbumCard album={data} />);
+  const genre = screen.queryByText(`Genre -`);
+  expect(genre).toBeNull();
 });
 
 test("it should display the number of tracks in the album", () => {

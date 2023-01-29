@@ -18,7 +18,8 @@ const AlbumCard = ({ album }) => {
         <Card.Title>{album.name}</Card.Title>
         <Card.Subtitle>{album.artist}</Card.Subtitle>
         <Card.Text>
-          <span>Genre - {album.genre}</span> <br />{" "}
+          {album.genre && <span>Genre - {album.genre}</span>}
+          <br />
           <span>{album.trackCount} Tracks</span>
         </Card.Text>
         <Card.Link href={album.externalUrl}>Open in Spotify</Card.Link>
