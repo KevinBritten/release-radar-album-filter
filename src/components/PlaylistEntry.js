@@ -4,8 +4,6 @@ import * as api from "./ApiHelpers.js";
 
 import "../styles/playlist-entry.css";
 
-var Buffer = require("buffer/").Buffer;
-
 const PlaylistEntry = ({ loadAlbums }) => {
   const [playlistId, setPlaylistId] = useState("");
 
