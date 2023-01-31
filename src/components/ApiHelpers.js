@@ -4,20 +4,22 @@ var Buffer = require("buffer/").Buffer;
 
 async function getAuthToken() {
   var { REACT_APP_CLIENT_ID, REACT_APP_CLIENT_SECRET } = process.env;
-  const token = await axios.post(
-    "https://accounts.spotify.com/api/token",
-    { grant_type: "client_credentials" },
-    {
-      headers: {
-        Authorization:
-          "Basic " +
-          new Buffer(
-            REACT_APP_CLIENT_ID + ":" + REACT_APP_CLIENT_SECRET
-          ).toString("base64"),
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-    }
-  );
+  const token = await axios
+    .post(
+      "https://accounts.spotify.com/api/token",
+      { grant_type: "client_credentials" },
+      {
+        headers: {
+          Authorization:
+            "Basic " +
+            new Buffer(
+              REACT_APP_CLIENT_ID + ":" + REACT_APP_CLIENT_SECRET
+            ).toString("base64"),
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      }
+    )
+    .then((res) => res.data.access_token);
   return token;
 }
 async function getTracks(playlistId, token) {

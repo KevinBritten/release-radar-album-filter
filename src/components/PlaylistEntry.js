@@ -13,7 +13,7 @@ const PlaylistEntry = ({ loadAlbums }) => {
       .map((track) => track.track.album);
   }
   async function clickFunction() {
-    const token = await api.getAuthToken().then((d) => d.data.access_token);
+    const token = await api.getAuthToken();
     const tracks = await api.getTracks(playlistId, token);
     const filteredAlbums = filterAlbums(tracks);
     loadAlbums(filteredAlbums);
