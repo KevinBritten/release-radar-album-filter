@@ -1,6 +1,6 @@
-import axios from "axios";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
+import * as api from "./ApiHelpers.js";
 
 import "../styles/playlist-entry.css";
 
@@ -9,45 +9,14 @@ var Buffer = require("buffer/").Buffer;
 const PlaylistEntry = ({ loadAlbums }) => {
   const [playlistId, setPlaylistId] = useState("");
 
-  const baseUrl = "https://api.spotify.com/v1/playlists/";
-
-  async function getAuthToken() {
-    var { REACT_APP_CLIENT_ID, REACT_APP_CLIENT_SECRET } = process.env;
-    const token = await axios.post(
-      "https://accounts.spotify.com/api/token",
-      { grant_type: "client_credentials" },
-      {
-        headers: {
-          Authorization:
-            "Basic " +
-            new Buffer(
-              REACT_APP_CLIENT_ID + ":" + REACT_APP_CLIENT_SECRET
-            ).toString("base64"),
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-      }
-    );
-    return token;
-  }
-  async function getTracks(playlistId, token) {
-    const playlistUri = baseUrl + playlistId;
-    const tracks = await axios
-      .get(playlistUri, {
-        params: {
-          access_token: token,
-        },
-      })
-      .then((res) => res.data.tracks.items);
-    return tracks;
-  }
   function filterAlbums(tracks) {
     return tracks
       .filter((track) => !(track.track.album["album_type"] === "single"))
       .map((track) => track.track.album);
   }
   async function clickFunction() {
-    const token = await getAuthToken().then((d) => d.data.access_token);
-    const tracks = await getTracks(playlistId, token);
+    const token = await api.getAuthToken().then((d) => d.data.access_token);
+    const tracks = await api.getTracks(playlistId, token);
     const filteredAlbums = filterAlbums(tracks);
     loadAlbums(filteredAlbums);
   }
