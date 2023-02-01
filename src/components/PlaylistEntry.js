@@ -5,7 +5,8 @@ import * as api from "./ApiHelpers.js";
 import "../styles/playlist-entry.css";
 
 const PlaylistEntry = ({ loadAlbums }) => {
-  const [playlistId, setPlaylistId] = useState("37i9dQZEVXbq7HBpM8RcNy");
+  const myPlaylistId = "37i9dQZEVXbq7HBpM8RcNy";
+  const [playlistId, setPlaylistId] = useState(myPlaylistId);
 
   // return an array of albums which are not singles
   function filterAlbums(tracks) {
@@ -21,10 +22,18 @@ const PlaylistEntry = ({ loadAlbums }) => {
     loadAlbums(filteredAlbums);
   }
 
+  function onChangeFunction(e) {
+    //use myPlaylistId as default if text box is empty
+    const extractedId = extractId(e.target.value)
+      ? extractId(e.target.value)
+      : myPlaylistId;
+    setPlaylistId(extractedId);
+  }
   //extract the id from the string copied from Spotify
   function extractId(url) {
     let startIdx = url.indexOf("/playlist/") + 10;
-    let endIdx = url.indexOf("?si=");
+    //"?si=" optional in string, if not found endIdx is end of string
+    let endIdx = url.indexOf("?si=") < 0 ? url.length : url.indexOf("?si=");
     return url.substring(startIdx, endIdx);
   }
 
@@ -42,9 +51,7 @@ const PlaylistEntry = ({ loadAlbums }) => {
           className="form-control"
           type="text"
           required
-          onChange={(e) => {
-            setPlaylistId(extractId(e.target.value));
-          }}
+          onChange={onChangeFunction}
           placeholder="Paste playlist link here (ie: https://open.spotify.com/playlist/37i9dQZEVXbq7HBpM8RcNy?si=e923c767a1f342b7)"
         ></input>
         <Button onClick={clickFunction}>Continue</Button>
