@@ -1,6 +1,6 @@
 import PlaylistEntry from "./PlaylistEntry";
 
-import "../styles/setup-wrapper.css";
+import "../styles/setup-wrapper.scss";
 
 const SetupWrapper = ({ loadAlbums }) => {
   return (

@@ -2,7 +2,7 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import * as api from "./ApiHelpers.js";
 
-import "../styles/playlist-entry.css";
+import "../styles/playlist-entry.scss";
 
 const PlaylistEntry = ({ loadAlbums }) => {
   const myPlaylistId = "37i9dQZEVXbq7HBpM8RcNy";
