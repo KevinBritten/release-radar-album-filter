@@ -32,7 +32,6 @@ async function getTracks(playlistId, token) {
       },
     })
     .then((res) => res.data.tracks.items);
-  console.log(tracks);
   return tracks;
 }
 
