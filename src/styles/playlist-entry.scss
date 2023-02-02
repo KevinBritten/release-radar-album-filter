@@ -1,5 +1,8 @@
+@import "./mixins.scss";
+
 .playlist-entry {
-  padding: 100px 200px;
+  padding: 100px 0;
+  max-width: 400px;
   text-align: center;
 }
 
@@ -10,4 +13,7 @@
 
 .playlist-entry > form > input {
   margin-bottom: 10px;
+}
+
+@include atMobile {
 }
