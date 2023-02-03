@@ -3,7 +3,7 @@ import axios from "axios";
 var Buffer = require("buffer/").Buffer;
 
 async function getAuthToken() {
-  var { REACT_APP_CLIENT_ID, REACT_APP_CLIENT_SECRET } = process.env;
+  var { CLIENT_ID, CLIENT_SECRET } = process.env;
   const token = await axios
     .post(
       "https://accounts.spotify.com/api/token",
