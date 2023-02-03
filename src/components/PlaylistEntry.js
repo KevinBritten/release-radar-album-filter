@@ -16,8 +16,7 @@ const PlaylistEntry = ({ loadAlbums }) => {
   }
 
   async function clickFunction() {
-    const token = await api.getAuthToken();
-    const tracks = await api.getTracks(playlistId, token);
+    const tracks = await api.getTracks(playlistId);
     const filteredAlbums = filterAlbums(tracks);
     loadAlbums(filteredAlbums);
   }
@@ -40,11 +39,17 @@ const PlaylistEntry = ({ loadAlbums }) => {
   return (
     <div className="playlist-entry">
       <p>
-        Go to your Release Radar playlist in Spotify and click “Share” &gt;
-        “Copy link to playlist”. Paste the link into the box below.
+        <span>
+          Go to your Release Radar playlist in Spotify and click “Share” &gt;
+          “Copy link to playlist”. Paste the link into the box below.
+        </span>
         <br />
         <br />
-        You can also just click continue to see the albums recommended for me :)
+        <span>
+          {" "}
+          You can also just click continue to see the albums recommended for me
+          :)
+        </span>
       </p>
       <form>
         <input
