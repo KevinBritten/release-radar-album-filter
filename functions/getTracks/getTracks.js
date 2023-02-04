@@ -12,9 +12,7 @@ async function getAuthToken() {
         headers: {
           Authorization:
             "Basic " +
-            new Buffer(
-              REACT_APP_CLIENT_ID + ":" + REACT_APP_CLIENT_SECRET
-            ).toString("base64"),
+            new Buffer(CLIENT_ID + ":" + CLIENT_SECRET).toString("base64"),
           "Content-Type": "application/x-www-form-urlencoded",
         },
       }
