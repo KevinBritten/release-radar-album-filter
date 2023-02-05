@@ -1,7 +1,5 @@
 import axios from "axios";
 
-var Buffer = require("buffer/").Buffer;
-
 const getTracks = async (playlistId) => {
   const response = await axios.post("/.netlify/functions/getTracks/getTracks", {
     playlistId,
