@@ -1,9 +1,10 @@
-import axios from "axios";
+var axios = require("axios");
 
 var Buffer = require("buffer/").Buffer;
 
 async function getAuthToken() {
   var { CLIENT_ID, CLIENT_SECRET } = process.env;
+
   const token = await axios
     .post(
       "https://accounts.spotify.com/api/token",
@@ -35,11 +36,11 @@ async function getTracksApiCall(playlistId, token) {
 
 exports.handler = async (event, context) => {
   const { playlistId } = JSON.parse(event.body);
-  const token = await getAuthToken();
-  const data = await getTracksApiCall(playlistId, token);
+  // const token = await getAuthToken();
+  // const data = await getTracksApiCall(playlistId, token);
 
   return {
     statusCode: 200,
-    body: JSON.stringify(data),
+    // body: JSON.strngify(data),
   };
 };
