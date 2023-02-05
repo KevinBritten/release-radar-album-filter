@@ -24,3 +24,15 @@ test("it displays the results screen on playlist load", async () => {
     screen.getByText("Anything In Return (Instrumentals)");
   });
 });
+
+test("it displays a message when no results are found", async () => {
+  render(<App />);
+  getTracks.mockResolvedValue([]);
+  const continueButton = screen.getByText("Continue");
+  userEvent.click(continueButton);
+  await waitFor(() => {
+    screen.getByText(
+      "Sorry, no albums were found. Either you provided a blank playlist or all the songs in the playlist are from singles."
+    );
+  });
+});

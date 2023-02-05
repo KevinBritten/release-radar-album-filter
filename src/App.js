@@ -12,7 +12,15 @@ function App() {
   return (
     <div>
       {!albums && <SetupWrapper loadAlbums={loadAlbums} />}
-      {albums && <ResultsScreen albums={albums}></ResultsScreen>}
+      {albums && !albums.length && (
+        <h1>
+          Sorry, no albums were found. Either you provided a blank playlist or
+          all the songs in the playlist are from singles.
+        </h1>
+      )}
+      {albums && albums.length > 0 && (
+        <ResultsScreen albums={albums}></ResultsScreen>
+      )}
     </div>
   );
 }
