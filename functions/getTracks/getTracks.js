@@ -34,7 +34,7 @@ async function getTracksApiCall(playlistId, token) {
   return tracks;
 }
 
-exports.handler = async (event, context) => {
+exports.handler = async (event) => {
   const { playlistId } = JSON.parse(event.body);
   const token = await getAuthToken();
   const data = await getTracksApiCall(playlistId, token);
