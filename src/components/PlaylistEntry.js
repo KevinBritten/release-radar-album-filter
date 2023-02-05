@@ -7,6 +7,7 @@ import "../styles/playlist-entry.scss";
 const PlaylistEntry = ({ loadAlbums }) => {
   const myPlaylistId = "37i9dQZEVXbq7HBpM8RcNy";
   const [playlistId, setPlaylistId] = useState(myPlaylistId);
+  const [isLoading, setIsLoading] = useState(false);
 
   // return an array of albums which are not singles
   function filterAlbums(tracks) {
@@ -16,10 +17,12 @@ const PlaylistEntry = ({ loadAlbums }) => {
   }
 
   async function clickFunction() {
+    setIsLoading(true);
     const token = await api.getAuthToken();
     const tracks = await api.getTracks(playlistId, token);
     const filteredAlbums = filterAlbums(tracks);
     loadAlbums(filteredAlbums);
+    setIsLoading(false);
   }
 
   function onChangeFunction(e) {
@@ -54,7 +57,10 @@ const PlaylistEntry = ({ loadAlbums }) => {
           onChange={onChangeFunction}
           placeholder="Paste playlist link here (ie: https://open.spotify.com/playlist/37i9dQZEVXbq7HBpM8RcNy?si=e923c767a1f342b7)"
         ></input>
-        <Button onClick={clickFunction}>Continue</Button>
+        <Button onClick={clickFunction}>
+          {isLoading && <span>Loading...</span>}
+          {!isLoading && <span>Continue</span>}
+        </Button>
       </form>
     </div>
   );

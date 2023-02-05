@@ -34,3 +34,19 @@ test("it displays a message when no results are found", async () => {
     screen.getByText("Sorry, no albums were found.");
   });
 });
+
+test("it displays a message while loading", async () => {
+  render(<App />);
+  getTracks.mockImplementation(() => {
+    return new Promise((res) => {
+      setTimeout(() => {
+        res();
+      }, 500);
+    });
+  });
+  const continueButton = screen.getByText("Continue");
+  userEvent.click(continueButton);
+  await waitFor(() => {
+    screen.getByText("Loading...");
+  });
+});
