@@ -31,8 +31,6 @@ test("it displays a message when no results are found", async () => {
   const continueButton = screen.getByText("Continue");
   userEvent.click(continueButton);
   await waitFor(() => {
-    screen.getByText(
-      "Sorry, no albums were found. Either you provided a blank playlist or all the songs in the playlist are from singles."
-    );
+    screen.getByText("Sorry, no albums were found.");
   });
 });
