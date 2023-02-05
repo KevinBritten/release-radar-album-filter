@@ -36,11 +36,11 @@ async function getTracksApiCall(playlistId, token) {
 
 exports.handler = async (event, context) => {
   const { playlistId } = JSON.parse(event.body);
-  // const token = await getAuthToken();
-  // const data = await getTracksApiCall(playlistId, token);
+  const token = await getAuthToken();
+  const data = await getTracksApiCall(playlistId, token);
 
   return {
     statusCode: 200,
-    // body: JSON.strngify(data),
+    body: JSON.strngify(data),
   };
 };
