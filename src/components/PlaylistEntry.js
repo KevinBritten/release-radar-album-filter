@@ -73,7 +73,7 @@ const PlaylistEntry = ({ loadAlbums }) => {
         </Button>
         {showErrorMessage && (
           <Alert
-            style={{ "margin-top": "10px" }}
+            className="error-message"
             key={"danger"}
             variant={"danger"}
             onClose={() => {
