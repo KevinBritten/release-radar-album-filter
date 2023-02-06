@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
+import Alert from "react-bootstrap/Alert";
 import * as api from "./ApiHelpers.js";
 
 import "../styles/playlist-entry.scss";
@@ -8,6 +9,7 @@ const PlaylistEntry = ({ loadAlbums }) => {
   const myPlaylistId = "37i9dQZEVXbq7HBpM8RcNy";
   const [playlistId, setPlaylistId] = useState(myPlaylistId);
   const [isLoading, setIsLoading] = useState(false);
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
 
   // return an array of albums which are not singles
   function filterAlbums(tracks) {
@@ -18,7 +20,10 @@ const PlaylistEntry = ({ loadAlbums }) => {
 
   async function clickFunction() {
     setIsLoading(true);
-    const tracks = await api.getTracks(playlistId);
+    const tracks = await api.getTracks(playlistId).catch(() => {
+      setShowErrorMessage(true);
+      setIsLoading(false);
+    });
     const filteredAlbums = filterAlbums(tracks);
     loadAlbums(filteredAlbums);
     setIsLoading(false);
@@ -66,6 +71,20 @@ const PlaylistEntry = ({ loadAlbums }) => {
           {isLoading && <span>Loading...</span>}
           {!isLoading && <span>Continue</span>}
         </Button>
+        {showErrorMessage && (
+          <Alert
+            style={{ "margin-top": "10px" }}
+            key={"danger"}
+            variant={"danger"}
+            onClose={() => {
+              setShowErrorMessage(false);
+            }}
+            dismissible
+          >
+            There was an error getting your playlist. Make sure you copied the
+            link correctly and try again.
+          </Alert>
+        )}
       </form>
     </div>
   );
