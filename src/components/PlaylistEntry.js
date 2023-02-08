@@ -6,7 +6,7 @@ import * as api from "./ApiHelpers.js";
 import "../styles/playlist-entry.scss";
 
 const PlaylistEntry = ({ loadAlbums }) => {
-  const myPlaylistId = "37i9dQZEVXbq7HBpM8RcNy";
+  const myPlaylistId = process.env.REACT_APP_DEFAULT_PLAYLIST_ID;
   const [playlistId, setPlaylistId] = useState(myPlaylistId);
   const [isLoading, setIsLoading] = useState(false);
   const [showErrorMessage, setShowErrorMessage] = useState(false);
@@ -65,7 +65,11 @@ const PlaylistEntry = ({ loadAlbums }) => {
           type="text"
           required
           onChange={onChangeFunction}
-          placeholder="Paste playlist link here (ie: https://open.spotify.com/playlist/37i9dQZEVXbq7HBpM8RcNy?si=e923c767a1f342b7)"
+          placeholder={
+            "Paste playlist link here (ie: https://open.spotify.com/playlist/" +
+            myPlaylistId +
+            "?si=e923c767a1f342b7)"
+          }
         ></input>
         <Button onClick={clickFunction}>
           {isLoading && <span>Loading...</span>}
