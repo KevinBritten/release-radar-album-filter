@@ -11,11 +11,18 @@ const PlaylistEntry = ({ loadAlbums }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [showErrorMessage, setShowErrorMessage] = useState(false);
 
-  // return an array of albums which are not singles
+  // return an array of albums which are not singles without including duplicates
   function filterAlbums(tracks) {
-    return tracks
+    const albums = tracks
       .filter((track) => !(track.track.album["album_type"] === "single"))
       .map((track) => track.track.album);
+    const uniqueAlbums = albums.reduce((acc, curr) => {
+      if (!acc.some((album) => album.name === curr.name)) {
+        acc.push(curr);
+      }
+      return acc;
+    }, []);
+    return uniqueAlbums;
   }
 
   async function clickFunction() {
