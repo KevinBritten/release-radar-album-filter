@@ -1,6 +1,6 @@
 {
   "short_name": "Release Radar Filter",
-  "name": "Release Radar Albums Only Filter",
+  "name": "Release Radar Albums Filter",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
