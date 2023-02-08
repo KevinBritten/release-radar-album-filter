@@ -10,6 +10,11 @@ Use this app to see tracks on your Release Radar (or any playlist) that are part
 - Api calls are made using **Netlify serverless functions**.
 - App implements data from the **Spotify Api** with the **Client Credentials** authorization flow.
 
+## Upcoming Features
+
+-Add albums to a playlist in your account.
+-Update playlist weekly to give you an up to date playlist of new albums from your Release Radar.
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
