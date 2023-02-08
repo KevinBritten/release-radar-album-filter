@@ -2,6 +2,8 @@
 
 Use this app to see tracks on your Release Radar (or any playlist) that are part of a complete album and not just a single.
 
+[Visit the site here.](https://famous-bunny-a4183b.netlify.app/)
+
 ## Features and Technologies Used
 
 - Built using **Test Drive Development** with the **React Test Library**.
@@ -22,7 +24,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 1. Clone the repository
 
-### `git clone https://github.com/<your-username>/react-release-radar.git`
+### `git clone https://github.com/<your-username>/release-radar-album-filter.git`
 
 2. Navigate to the project directory
 
