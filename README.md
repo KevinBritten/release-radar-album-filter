@@ -12,8 +12,8 @@ Use this app to see tracks on your Release Radar (or any playlist) that are part
 
 ### Upcoming Features
 
--Add albums to a playlist in your account.
--Update playlist weekly to give you an up to date playlist of new albums from your Release Radar.
+- Add albums to a playlist in your account.
+- Update playlist weekly to give you an up to date playlist of new albums from your Release Radar.
 
 ## Getting Started
 
