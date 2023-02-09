@@ -78,7 +78,7 @@ Netlify Serverless Functions - A serverless computing platform to run your serve
 
 ### Authors
 
-Kevin Britten - <KevinBritten>
+[Kevin Britten](https://github.com/KevinBritten)
 
 ### License
 
