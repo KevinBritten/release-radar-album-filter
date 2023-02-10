@@ -33,7 +33,7 @@ test("it doesn't display duplicates on playlist load", async () => {
   getTracks.mockResolvedValue(getTracksResponseDuplicates);
   const continueButton = screen.getByText("Continue");
   userEvent.click(continueButton);
-  const albumTitle = await waitFor(() => {
+  await waitFor(() => {
     return screen.getAllByText("Sunset Blush");
   });
   expect(screen.getAllByText("Sunset Blush")).toHaveLength(1);
