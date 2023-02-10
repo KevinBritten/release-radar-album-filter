@@ -6,8 +6,8 @@ import * as api from "./ApiHelpers.js";
 import "../styles/playlist-entry.scss";
 
 const PlaylistEntry = ({ loadAlbums }) => {
-  const myPlaylistId = process.env.REACT_APP_DEFAULT_PLAYLIST_ID;
-  const [playlistId, setPlaylistId] = useState(myPlaylistId);
+  const defaultPlaylistId = process.env.REACT_APP_DEFAULT_PLAYLIST_ID;
+  const [playlistId, setPlaylistId] = useState(defaultPlaylistId);
   const [isLoading, setIsLoading] = useState(false);
   const [showErrorMessage, setShowErrorMessage] = useState(false);
 
@@ -37,10 +37,10 @@ const PlaylistEntry = ({ loadAlbums }) => {
   }
 
   function onChangeFunction(e) {
-    //use myPlaylistId as default if text box is empty
+    //use defaultPlaylistId as default if text box is empty
     const extractedId = extractId(e.target.value)
       ? extractId(e.target.value)
-      : myPlaylistId;
+      : defaultPlaylistId;
     setPlaylistId(extractedId);
   }
   //extract the id from the string copied from Spotify
@@ -74,7 +74,7 @@ const PlaylistEntry = ({ loadAlbums }) => {
           onChange={onChangeFunction}
           placeholder={
             "Paste playlist link here (ie: https://open.spotify.com/playlist/" +
-            myPlaylistId +
+            defaultPlaylistId +
             "?si=e923c767a1f342b7)"
           }
         ></input>
