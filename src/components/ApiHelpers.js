@@ -6,7 +6,6 @@ const getTracks = async (playlistId) => {
     playlistId,
   });
   const tracks = response.data;
-  console.log(response);
   return tracks;
 };
 
