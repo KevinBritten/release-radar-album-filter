@@ -76,8 +76,7 @@ const PlaylistEntry = ({ loadAlbums }) => {
           onChange={onChangeFunction}
           placeholder={
             "Paste playlist link here (ie: https://open.spotify.com/playlist/" +
-            defaultPlaylistId +
-            "?si=e923c767a1f342b7)"
+            defaultPlaylistId
           }
         ></input>
         <Button onClick={clickFunction}>
