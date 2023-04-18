@@ -5,13 +5,19 @@ import {
   getTracksResponseDuplicates,
 } from "./test/testData";
 
+import { BrowserRouter } from "react-router-dom";
+
 import App from "./App";
 import { getTracks } from "./components/ApiHelpers";
 
 jest.mock("./components/ApiHelpers.js");
 
 test("it starts displaying the setup screen", () => {
-  render(<App />);
+  render(
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  );
   const header = screen.queryByText(
     "Get only the full album releases from your Release Radar."
   );
@@ -19,7 +25,11 @@ test("it starts displaying the setup screen", () => {
 });
 
 test("it displays the results screen on playlist load", async () => {
-  render(<App />);
+  render(
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  );
   getTracks.mockResolvedValue(getTracksResponseNoDuplicates);
   const continueButton = screen.getByText("Continue");
   userEvent.click(continueButton);
@@ -29,7 +39,11 @@ test("it displays the results screen on playlist load", async () => {
 });
 
 test("it doesn't display duplicates on playlist load", async () => {
-  render(<App />);
+  render(
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  );
   getTracks.mockResolvedValue(getTracksResponseDuplicates);
   const continueButton = screen.getByText("Continue");
   userEvent.click(continueButton);
@@ -40,7 +54,11 @@ test("it doesn't display duplicates on playlist load", async () => {
 });
 
 test("it displays a message when no results are found", async () => {
-  render(<App />);
+  render(
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  );
   getTracks.mockResolvedValue([]);
   const continueButton = screen.getByText("Continue");
   userEvent.click(continueButton);
@@ -50,7 +68,11 @@ test("it displays a message when no results are found", async () => {
 });
 
 test("it displays a message while loading", async () => {
-  render(<App />);
+  render(
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  );
   getTracks.mockImplementation(() => {
     return new Promise((res) => {
       setTimeout(() => {

@@ -29,7 +29,7 @@ function App() {
         <Routes>
           <Route
             exact
-            path="/"
+            path=""
             element={<SetupWrapper loadAlbums={loadAlbums} />}
           />
           <Route path="/results" element={<ResultsScreen albums={albums} />} />
