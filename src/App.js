@@ -17,7 +17,7 @@ function App() {
     else if (albums.length > 0) navigate("/results");
   };
 
-  useEffect(showResults, [albums]);
+  useEffect(showResults, [albums, navigate]);
 
   const loadAlbums = (data) => {
     setAlbums(() => data);
