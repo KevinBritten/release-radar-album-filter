@@ -26,7 +26,7 @@ const PlaylistEntry = ({ loadAlbums }) => {
   }
 
   async function clickFunction() {
-    //don't run function if alreayd loading. Set isLoading to true while waiting for api call.
+    //don't run function if already loading. Set isLoading to true while waiting for api call.
     if (isLoading) return;
     setIsLoading(true);
     const tracks = await api.getTracks(playlistId).catch(() => {
