@@ -17,7 +17,10 @@ function App() {
     else if (albums.length > 0) navigate("/results");
   };
 
-  useEffect(showResults, [albums]);
+  useEffect(() => {
+    showResults();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [albums]);
 
   const loadAlbums = (data) => {
     setAlbums(() => data);

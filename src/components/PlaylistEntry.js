@@ -12,7 +12,10 @@ const PlaylistEntry = ({ loadAlbums }) => {
   const [showErrorMessage, setShowErrorMessage] = useState(false);
 
   //Reset albums array when component is loaded so that the results don't automatically load again if the user uses the back button on their browser
-  useEffect(() => loadAlbums(null), []);
+  useEffect(() => {
+    loadAlbums(null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // return an array of albums which are not singles without including duplicates
   function filterAlbums(tracks) {
