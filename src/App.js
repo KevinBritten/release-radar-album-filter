@@ -12,12 +12,13 @@ function App() {
   const [albums, setAlbums] = useState(null);
 
   const showResults = () => {
+    console.log(albums);
     if (albums === null) return;
     else if (albums.length === 0) navigate("/no-results");
     else if (albums.length > 0) navigate("/results");
   };
 
-  useEffect(showResults, [albums, navigate]);
+  useEffect(showResults, [albums]);
 
   const loadAlbums = (data) => {
     setAlbums(() => data);

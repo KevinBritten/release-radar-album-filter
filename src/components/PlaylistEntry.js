@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 import * as api from "./ApiHelpers.js";
@@ -10,6 +10,9 @@ const PlaylistEntry = ({ loadAlbums }) => {
   const [playlistId, setPlaylistId] = useState(defaultPlaylistId);
   const [isLoading, setIsLoading] = useState(false);
   const [showErrorMessage, setShowErrorMessage] = useState(false);
+
+  //Reset albums array when component is loaded so that the results don't automatically load again if the user uses the back button on their browser
+  useEffect(() => loadAlbums(null), []);
 
   // return an array of albums which are not singles without including duplicates
   function filterAlbums(tracks) {
