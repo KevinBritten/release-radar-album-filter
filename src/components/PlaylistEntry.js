@@ -32,14 +32,16 @@ const PlaylistEntry = ({ loadAlbums }) => {
   }
 
   async function clickFunction() {
-    //don't run function if already loading. Set isLoading to true while waiting for api call.
+    //prevent function from running if already loading.
     if (isLoading) return;
+    // Set isLoading to true while waiting for api call.
     setIsLoading(true);
     const tracks = await api.getTracks(playlistId).catch(() => {
       setShowErrorMessage(true);
       setIsLoading(false);
     });
     const filteredAlbums = filterAlbums(tracks);
+    //send album to parent component
     loadAlbums(filteredAlbums);
     setIsLoading(false);
   }
