@@ -31,3 +31,37 @@ test("it should have a checkbox to remember the playlist", () => {
   const label = screen.getByText("Remember my playlist");
   expect(label).toBeVisible();
 });
+
+test("it should display the correct text when an album is saved in local storage", () => {
+  // Create mock localStorage
+  const localStorageMock = (function () {
+    let store = {};
+    return {
+      getItem: function (key) {
+        return store[key] || null;
+      },
+      setItem: function (key, value) {
+        store[key] = value.toString();
+      },
+      clear: function () {
+        store = {};
+      },
+    };
+  })();
+
+  // Replace the localStorage object with our mock object
+  Object.defineProperty(window, "localStorage", { value: localStorageMock });
+
+  // Set an item in local storage to simulate that an album has been saved
+  window.localStorage.setItem("playlistId", "testAlbum");
+
+  // Render the component
+  render(<PlaylistEntry loadAlbums={() => {}} />);
+
+  // Check that the correct text is displayed
+  expect(
+    screen.getByText(
+      "Click continue to use your remembered playlist, or paste a different playlist into the field below."
+    )
+  ).toBeInTheDocument();
+});
