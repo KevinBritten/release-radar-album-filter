@@ -15,9 +15,15 @@
   margin-bottom: 10px;
 }
 
+.playlist-entry__checkbox-container {
+  display: block;
+  margin-bottom: 10px;
+}
+
 .error-message {
   margin-top: 10px;
 }
+
 
 @include atMobile {
 }

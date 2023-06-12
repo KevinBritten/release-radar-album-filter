@@ -117,16 +117,18 @@ const PlaylistEntry = ({ loadAlbums }) => {
                 defaultPlaylistId
           }
         ></input>
-        <span>
+        <span className="playlist-entry__checkbox-container">
           <input
+            className="form-check-input"
             type="checkbox"
             id="rememberPlaylist"
             checked={rememberPlaylist}
             onChange={(e) => setRememberPlaylist(e.target.checked)}
           />
-          <label for="rememberPlaylist">Remember my playlist</label>
+          <label className="form-check-label" for="rememberPlaylist">
+            Remember my playlist
+          </label>
         </span>
-        <br />
         <Button onClick={clickFunction}>
           {isLoading && <span>Loading...</span>}
           {!isLoading && <span>Continue</span>}
