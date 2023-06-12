@@ -125,7 +125,7 @@ const PlaylistEntry = ({ loadAlbums }) => {
             checked={rememberPlaylist}
             onChange={(e) => setRememberPlaylist(e.target.checked)}
           />
-          <label className="form-check-label" for="rememberPlaylist">
+          <label className="form-check-label" htmlFor="rememberPlaylist">
             Remember my playlist
           </label>
         </span>

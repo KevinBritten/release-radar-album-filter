@@ -2,8 +2,10 @@ import { render, screen } from "@testing-library/react";
 
 import PlaylistEntry from "./PlaylistEntry";
 
+const loadAlbumsMock = () => {};
+
 test("it should display instruction test", () => {
-  render(<PlaylistEntry />);
+  render(<PlaylistEntry loadAlbums={loadAlbumsMock} />);
   const instructions = screen.queryByText(
     "Go to your Release Radar playlist in Spotify and click “Share” > “Copy link to playlist”. Paste the link into the box below."
   );
@@ -11,13 +13,13 @@ test("it should display instruction test", () => {
 });
 
 test("it should have a text field", () => {
-  render(<PlaylistEntry />);
+  render(<PlaylistEntry loadAlbums={loadAlbumsMock} />);
   const input = screen.getByRole("textbox");
   expect(input).toBeVisible();
 });
 
 test("it should have a submit button", () => {
-  render(<PlaylistEntry />);
+  render(<PlaylistEntry loadAlbums={loadAlbumsMock} />);
   const button = screen.getByRole("button");
   expect(button).toBeVisible();
 });
