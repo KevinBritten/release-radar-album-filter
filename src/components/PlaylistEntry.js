@@ -7,11 +7,15 @@ import "../styles/playlist-entry.scss";
 
 const PlaylistEntry = ({ loadAlbums }) => {
   const defaultPlaylistId = process.env.REACT_APP_DEFAULT_PLAYLIST_ID;
-  const [playlistId, setPlaylistId] = useState(defaultPlaylistId);
+  const rememberedPlaylist = localStorage.getItem("playlistId");
+  const [playlistId, setPlaylistId] = useState(
+    rememberedPlaylist || defaultPlaylistId
+  );
   const [isLoading, setIsLoading] = useState(false);
   const [showErrorMessage, setShowErrorMessage] = useState(false);
+  const [rememberPlaylist, setRememberPlaylist] = useState(rememberedPlaylist);
 
-  //Reset albums array when component is loaded so that the results don't automatically load again if the user uses the back button on their browser
+  //Reset albums array when component is loaded so that the r esults don't automatically load again if the user uses the back button on their browser
   useEffect(() => {
     loadAlbums(null);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -41,7 +45,14 @@ const PlaylistEntry = ({ loadAlbums }) => {
       setIsLoading(false);
     });
     const filteredAlbums = filterAlbums(tracks);
+
     //send album to parent component
+    if (rememberPlaylist) {
+      localStorage.setItem("playlistId", playlistId);
+    } else {
+      localStorage.removeItem("playlistId");
+    }
+
     loadAlbums(filteredAlbums);
     setIsLoading(false);
   }
@@ -63,19 +74,36 @@ const PlaylistEntry = ({ loadAlbums }) => {
 
   return (
     <div className="playlist-entry">
-      <p>
-        <span>
-          Go to your Release Radar playlist in Spotify and click “Share” &gt;
-          “Copy link to playlist”. Paste the link into the box below.
-        </span>
-        <br />
-        <br />
-        <span>
-          {" "}
-          You can also just click continue to see the albums recommended for me
-          :)
-        </span>
-      </p>
+      {!rememberedPlaylist ? (
+        <p>
+          <span>
+            Go to your Release Radar playlist in Spotify and click “Share” &gt;
+            “Copy link to playlist”. Paste the link into the box below.
+          </span>
+          <br />
+          <br />
+
+          <span>
+            You can also just click continue to see the albums recommended for
+            me :)
+          </span>
+        </p>
+      ) : (
+        <p>
+          <span>
+            Click continue to use your remembered playlist, or paste a different
+            playlist into the field below.
+          </span>
+          <br />
+          <br />
+          <span>
+            To paste a different playlist, go to your Release Radar playlist in
+            Spotify and click “Share” &gt; “Copy link to playlist”. Paste the
+            link into the box below.
+          </span>
+        </p>
+      )}
+
       <form>
         <input
           className="form-control"
@@ -83,10 +111,22 @@ const PlaylistEntry = ({ loadAlbums }) => {
           required
           onChange={onChangeFunction}
           placeholder={
-            "Paste playlist link here (ie: https://open.spotify.com/playlist/" +
-            defaultPlaylistId
+            rememberedPlaylist
+              ? "Click continue to use your playlist."
+              : "Paste playlist link here (ie: https://open.spotify.com/playlist/" +
+                defaultPlaylistId
           }
         ></input>
+        <span>
+          <input
+            type="checkbox"
+            id="rememberPlaylist"
+            checked={rememberPlaylist}
+            onChange={(e) => setRememberPlaylist(e.target.checked)}
+          />
+          <label for="rememberPlaylist">Remember my playlist</label>
+        </span>
+        <br />
         <Button onClick={clickFunction}>
           {isLoading && <span>Loading...</span>}
           {!isLoading && <span>Continue</span>}
