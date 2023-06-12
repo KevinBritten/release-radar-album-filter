@@ -23,3 +23,11 @@ test("it should have a submit button", () => {
   const button = screen.getByRole("button");
   expect(button).toBeVisible();
 });
+
+test("it should have a checkbox to remember the playlist", () => {
+  render(<PlaylistEntry loadAlbums={loadAlbumsMock} />);
+  const checkbox = screen.getByRole("checkbox");
+  expect(checkbox).toBeVisible();
+  const label = screen.getByText("Remember my playlist");
+  expect(label).toBeVisible();
+});
