@@ -9,6 +9,7 @@ Use this app to see tracks on your Release Radar (or any playlist) that are part
 - Built using **Test Drive Development** with the **React Test Library**.
 - Api calls are made using **Netlify serverless functions**.
 - App implements data from the **Spotify Api** with the **Client Credentials** authorization flow.
+- Remember your playlist in local storage.
 
 ### Upcoming Features
 
